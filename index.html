@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Timestamp API - FreeCodeCamp Project</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="header">
+                Timestamp API - FreeCodeCamp Project by Christopher McLean
+            </h1>
+                <h2>Input</h2>
+                <p>A string containing either a unix timestamp or a natural language date (example: January 1, 2016)</p>
+                <h2>Output</h2>
+                <p>A JSON object containing the "unix" and "natural" elements, corresponding to the date provided. The natural element will be in the format Month Date, Year.</p>
+                <p>On invalid input both properties will be null.</p>
+            <h2>Usage examples</h2>
+            <table>
+              <tr>
+                <th>Input</th>
+                <th>Output</th>
+              </tr>
+              <tr>
+                <td><code>https://npm-chrismclean.c9users.io/1487462400</code></td>
+                <td><code>
+                {
+                "unix":1487462400,
+                "natural":"February 19, 2017"
+                }
+            </code></td>
+              </tr>
+              <tr>
+                <td><code>https://npm-chrismclean.c9users.io/Jan%201%202016</code></td>
+                <td><code>
+                {
+                "unix":1451606400,
+                "natural":"January 1, 2016"
+                }
+            </code></td>
+              </tr>
+              <tr>
+                <td><code>https://npm-chrismclean.c9users.io/November%2018,%202016</code></td>
+                <td><code>
+                {
+                "unix":1487462400,
+                "natural":"November 18, 2016"
+                }
+            </code></td>
+              </tr>
+            </table>
+            
+        </div>
+    </body>
+</html>

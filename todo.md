@@ -1,5 +1,0 @@
-- Impliment function for validating a supplied string represents a date
-- Impliment function for converting from a supplied, validated string to a Date object
-- Impliment a function for converting from a Date object to a unixtime
-- Add a landing page/instructions page to the '/' get (maybe look at sending a HTML file as a response)
-- Upload the API to heroku

@@ -1,11 +1,17 @@
 var express = require('express');
 var app = express();
+var path    = require("path");
 var port = process.argv[2]||process.env.PORT;
 var results = {};
 
-function isValidTimestamp(timestamp){
-  //will return 0 in the timestamp provided is not valid.
-  return (new Date(timestamp)).getTime();
+function isValidDate(theDate){
+  //input is either a unix timestamp, or a natral language string
+  //is a unix timestamp or 0 if the input could not be pharsed to a date.
+  if(isNaN(theDate)){
+    return (new Date(theDate)).getTime()/1000;
+  } else {
+    return (new Date(Number(theDate))).getTime();
+  }
 }
 
 function unixtimeToNatural(timestamp){
@@ -21,22 +27,18 @@ app.get('/:input', function (req, res) {
   var results = { "unix": null, "natural": null };
   console.log('call recieved, input was ' + input);
   //res.send('the input string was ' + input);
-  if(isNaN(input)){
-    //if the input is not a number try to pharse it as a date string
-  } else {
-    input = Number(input);
-    console.log('input is a number. time value is ' + isValidTimestamp(input));
-    if(isValidTimestamp(input) > 0) {
-    //if the input is a number verify it is a valid unix time then return the results
-    results.unix = input;
-    results.natural = unixtimeToNatural(input);
+  var ts = isValidDate(input)
+  console.log('ts is ' + ts);
+    if(ts > 0) {
+      results.unix = ts;
+      results.natural = unixtimeToNatural(results.unix);
     }
-  }
   res.send(results);
 })
 
 app.get('/', function (req, res) {
-  res.send('<H1>Timestamp API</H1>');
+  res.sendFile(path.join(__dirname+'/index.html'));
+  //res.send('<H1>Timestamp API</H1>');
 })
 
 app.listen(port, function () {
